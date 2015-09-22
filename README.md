@@ -1,11 +1,11 @@
-Javascript library for the Controller APIs
+# Isomorphic Javascript library for Minio Controller API
 
-Controller APIs return promises that can be used as:
+## Usage
 
-```
+```js
 import Ctrl from 'minio-controller-js'
 
-var Controller = new Ctrl("http://CONTROLLER-IPADDRESS:9001/rpc");
+let Controller = new Ctrl("http://<CONTROLLER-IPADDRESS:9001/rpc");
 
 Controller.APIMETHOD(ARGUMENT)
     .then(function(data) {
@@ -16,8 +16,8 @@ Controller.APIMETHOD(ARGUMENT)
     });
 ```
 
-List of Controller APIs
------------------------
+## List of Controller APIs implemented
+
 * GenerateAuth("admin")
 * FetchAuth("admin")
 * ResetAuth("admin")
@@ -28,12 +28,12 @@ List of Controller APIs
 * GetServerSysInfo({host:192.168.1.2})
 * GetServerVersion({host:192.168.1.2})
 
-## Examples
+## More Examples
 
-```
+```js
 import Ctrl from 'minio-controller-js'
 
-var Controller = new Ctrl("http://192.168.1.2:9001/rpc");
+let Controller = new Ctrl("http://192.168.1.2:9001/rpc");
 
 // Generate S3 key/secret
 Controller.GenerateAuth("admin")
