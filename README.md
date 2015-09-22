@@ -3,9 +3,9 @@
 ## Usage
 
 ```js
-import Ctrl from 'minio-controller-js'
+var Ctrl = require('minio-controller-js');
 
-let Controller = new Ctrl("http://<CONTROLLER-IPADDRESS:9001/rpc");
+var Controller = new Ctrl("http://<CONTROLLER-IPADDRESS:9001/rpc");
 
 Controller.APIMETHOD(ARGUMENT)
     .then(function(data) {
@@ -31,9 +31,9 @@ Controller.APIMETHOD(ARGUMENT)
 ## More Examples
 
 ```js
-import Ctrl from 'minio-controller-js'
+var Ctrl = require('minio-controller-js');
 
-let Controller = new Ctrl("http://192.168.1.2:9001/rpc");
+var Controller = new Ctrl("http://192.168.1.2:9001/rpc");
 
 // Generate S3 key/secret
 Controller.GenerateAuth("admin")
