@@ -1,0 +1,22 @@
+{
+  "name": "minio-controllerlib-js",
+  "version": "0.0.1",
+  "description": "Minio Controller Library",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Minio Inc",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "superagent-es6-promise": "^1.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1",
+    "gulp-jshint": "^1.11.2",
+    "gulp-notify": "^2.2.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "jshint-stylish": "^2.0.1"
+  }
+}
