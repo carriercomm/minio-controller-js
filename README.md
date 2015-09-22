@@ -17,6 +17,18 @@ Controller.APIMETHOD(ARGUMENT)
 ```
 
 ## List of Controller APIs implemented
+=======
+* GenerateAuth("admin")
+* FetchAuth("admin")
+* ResetAuth("admin")
+* AddServer({host:192.168.1.2})
+* ListServers()
+* GetServerMemStats({host:192.168.1.2})
+* GetServerDiskStats({host:192.168.1.2})
+* GetServerSysInfo({host:192.168.1.2})
+* GetServerVersion({host:192.168.1.2})
+* StorageStats()
+* RebalanceStats()
 
 [GenerateAuth("myuser")](./examples/gen-auth.js)
 
