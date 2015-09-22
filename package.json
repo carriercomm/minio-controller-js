@@ -1,7 +1,7 @@
 {
-  "name": "minio-controllerlib-js",
+  "name": "minio-controller-js",
   "version": "0.0.1",
-  "description": "Minio Controller Library",
+  "description": "Minio Controller API Library",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
