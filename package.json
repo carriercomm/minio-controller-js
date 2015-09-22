@@ -1,7 +1,7 @@
 {
   "name": "minio-controller-js",
   "version": "0.0.1",
-  "description": "Minio Controller API Library",
+  "description": "Isomorphic Javascript library for Minio Controller API",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

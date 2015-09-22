@@ -18,15 +18,23 @@ Controller.APIMETHOD(ARGUMENT)
 
 ## List of Controller APIs implemented
 
-* GenerateAuth("admin")
-* FetchAuth("admin")
-* ResetAuth("admin")
-* AddServer({host:192.168.1.2})
-* ListServers()
-* GetServerMemStats({host:192.168.1.2})
-* GetServerDiskStats({host:192.168.1.2})
-* GetServerSysInfo({host:192.168.1.2})
-* GetServerVersion({host:192.168.1.2})
+[GenerateAuth("myuser")](./examples/gen-auth.js)
+
+[FetchAuth("myuser")](./examples/fetch-auth.js)
+
+[ResetAuth("myuser")](./examples/reset-auth.js)
+
+[AddServer({host:192.168.1.2})](./examples/add-server.js)
+
+[ListServers()](./examples/list-servers.js)
+
+[GetServerMemStats({host:192.168.1.2})](./examples/get-server-memstats.js)
+
+[GetServerDiskStats({host:192.168.1.2})](./examples/get-server-diskstats.js)
+
+[GetServerSysInfo({host:192.168.1.2})](./examples/get-server-sysinfo.js)
+
+[GetServerVersion({host:192.168.1.2})](./examples/get-server-version.js)
 
 ## More Examples
 

@@ -1,7 +1,23 @@
-var superagent = require('superagent-es6-promise');
+/*
+ * Isomorphic Javascript library for Minio Controller API, (C) 2015 Minio, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-class JsonRPC extends superagent {
-    // new JsonRPC({endpoint: '...', namespace: '...'})
+import SuperAgent from 'superagent-es6-promise';
+
+class JSONrpc extends SuperAgent {
+    // new JSONrpc({endpoint: '...', namespace: '...'})
     constructor(params) {
         super(params);
         for (var key in params) {
@@ -26,7 +42,7 @@ class JsonRPC extends superagent {
             params: options.params ? options.params : [],
             method: this.namespace ? this.namespace + '.' + method : method
         }
-        return superagent.post(this.endpoint)
+        return SuperAgent.post(this.endpoint)
                 .set('Content-Type', 'application/json')
                 .send(JSON.stringify(dataObj))
                 .then(function(res) {
@@ -41,4 +57,4 @@ class JsonRPC extends superagent {
     }
 }
 
-export default JsonRPC;
+export default JSONrpc;
