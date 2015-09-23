@@ -51,10 +51,10 @@ export default class Controller {
     GetServerVersion(args) {
         return this.makeCall("GetServerVersion", args)
     }
-    StorageStats() {
-        return this.makeCall("StorageStats")
+    StorageStats(args) {
+        return this.makeCall("StorageStats", args)
     }
-    RebalanceStats() {
-        return this.makeCall("RebalaceStats")
+    RebalanceStats(args) {
+        return this.makeCall("RebalaceStats", args)
     }
 }
