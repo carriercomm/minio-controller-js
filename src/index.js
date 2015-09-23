@@ -51,6 +51,12 @@ export default class Controller {
     GetServerVersion(args) {
         return this.makeCall("GetServerVersion", args)
     }
+    DiscoverServers(args) {
+        return this.makeCall("DiscoverServers", args)
+    }
+    GetControllerNetInfo() {
+        return this.makeCall("GetControllerNetInfo")
+    }
     StorageStats() {
         return this.makeCall("StorageStats")
     }
