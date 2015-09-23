@@ -32,28 +32,6 @@ Controller.APIMETHOD(ARGUMENT)
 * DiscoverServers({hosts:["192.168.1.2", "192.168.1.3", "192.168.1.4"]})
 * GetControllerNetInfo()
 
-[GenerateAuth("myuser")](./examples/gen-auth.js)
-
-[FetchAuth("myuser")](./examples/fetch-auth.js)
-
-[ResetAuth("myuser")](./examples/reset-auth.js)
-
-[AddServer({host:192.168.1.2})](./examples/add-server.js)
-
-[ListServers()](./examples/list-servers.js)
-
-[GetServerMemStats({host:192.168.1.2})](./examples/get-server-memstats.js)
-
-[GetServerDiskStats({host:192.168.1.2})](./examples/get-server-diskstats.js)
-
-[GetServerSysInfo({host:192.168.1.2})](./examples/get-server-sysinfo.js)
-
-[GetServerVersion({host:192.168.1.2})](./examples/get-server-version.js)
-
-[StorageStats()](./examples/storage-stats.js)
-
-[RebalanceStats()](./examples/rebalance-stats.js)
-
 ## More Examples
 
 ```js
