@@ -15,46 +15,92 @@
  */
 
 import SuperAgent from 'superagent-es6-promise';
+import url from 'url'
+import Crypto from 'crypto'
+import signV4 from './signing'
 
-class JSONrpc extends SuperAgent {
-  // new JSONrpc({endpoint: '...', namespace: '...'})
-  constructor(params) {
-    super(params);
-    for (var key in params) {
-      this[key] = params[key];
+export default class JSONrpc extends SuperAgent {
+    constructor(params) {
+        super(params);
+
+        this.endpoint = params.endpoint
+        this.namespace = params.namespace
+        this.accessKey = params.accessKey
+        this.secretKey = params.secretKey
+
+        this.version = '2.0';
+        var parsedUrl = url.parse(this.endpoint)
+        this.host = parsedUrl.hostname
+        this.path = parsedUrl.path
+
+        switch (parsedUrl.protocol) {
+            case 'http:': {
+              this.scheme = 'http'
+              if (parsedUrl.port === 0) {
+                this.port = 80
+              }
+              break
+            }
+            case 'https:': {
+              this.scheme = 'https'
+              if (parsedUrl.port === 0) {
+                port = 443
+              }
+              break
+            }
+            default: {
+              throw new Error('Unknown protocol: ' + parsedUrl.protocol)
+          }
+        }
     }
-    this.version = '2.0';
-  }
-  // call('Get', {id: NN, params: [...]}, function() {})
-  call(method, options) {
-    if (!options) {
-      options = {}
+    // call('Get', {id: NN, params: [...]}, function() {})
+    call(method, options) {
+        if (!options) {
+            options = {}
+        }
+        if (!options.id) {
+            options.id = 1;
+        }
+        if (!options.params) {
+            options.params = [];
+        }
+        var dataObj = {
+            id: options.id,
+            jsonrpc: this.version,
+            params: options.params ? options.params : [],
+            method: this.namespace ? this.namespace + '.' + method : method
+        }
+        var payload = JSON.stringify(dataObj)
+        var hash = Crypto.createHash('sha256')
+        hash.update(payload)
+        var sha256 = hash.digest('hex').toLowerCase()
+
+        var requestParams = {
+            host: this.host,
+            port: this.port,
+            path: this.path,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        signV4(requestParams, sha256, this.accessKey, this.secretKey)
+
+        var req = SuperAgent.post(this.endpoint)
+
+        for (var key in requestParams.headers) {
+            req.set(key, requestParams.headers[key])
+        }
+
+        return req.send(JSON.stringify(dataObj))
+                .then(function(res) {
+                    if (!res.text)
+                        throw new Error("res.text not set in the response")
+                    return JSON.parse(res.text).result
+                }, function(error) {
+                    if (error.res && error.res.text)
+                        throw JSON.parse(error.res.text).error
+                    throw error
+                })
     }
-    if (!options.id) {
-      options.id = 1;
-    }
-    if (!options.params) {
-      options.params = [];
-    }
-    var dataObj = {
-      id: options.id,
-      jsonrpc: this.version,
-      params: options.params ? options.params : [],
-      method: this.namespace ? this.namespace + '.' + method : method
-    }
-    return SuperAgent.post(this.endpoint)
-      .set('Content-Type', 'application/json')
-      .send(JSON.stringify(dataObj))
-      .then(function(res) {
-        if (!res.text)
-          throw new Error("res.text not set in the response")
-        return JSON.parse(res.text).result
-      }, function(error) {
-        if (error.res && error.res.text)
-          throw JSON.parse(error.res.text).error
-        throw error
-      })
-  }
 }
-
-export default JSONrpc;
