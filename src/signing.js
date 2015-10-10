@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-var Moment = require('moment'),
-    Crypto = require('crypto'),
-    helpers = require('./helpers.js')
+var Moment = require('moment')
+var Crypto = require('crypto')
 
 var signV4 = (request, dataShaSum256, accessKey, secretKey) => {
       if (!accessKey || !secretKey) {
@@ -31,7 +30,7 @@ var signV4 = (request, dataShaSum256, accessKey, secretKey) => {
         request.headers = {}
       }
 
-      var region = helpers.getRegion(request.host),
+      var region = 'milkyway',
           host = request.host
 
       if ((request.scheme === 'http' && request.port !== 80) || (request.scheme === 'https' && request.port !== 443)) {
@@ -40,7 +39,7 @@ var signV4 = (request, dataShaSum256, accessKey, secretKey) => {
 
       request.headers.host = host
       request.headers['x-minio-date'] = requestDate.format('YYYYMMDDTHHmmss') + 'Z'
-      request.headers['x-amz-content-sha256'] = dataShaSum256
+      request.headers['x-minio-content-sha256'] = dataShaSum256
 
       var canonicalRequestAndSignedHeaders = getCanonicalRequest(request, dataShaSum256),
           canonicalRequest = canonicalRequestAndSignedHeaders[0],
