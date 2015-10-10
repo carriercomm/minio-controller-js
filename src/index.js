@@ -17,12 +17,16 @@
 import JSONrpc from './jsonrpc'
 
 export default class Controller {
-  constructor(endpoint) {
+  constructor(endpoint, accessKey, secretKey) {
     var namespace = 'Controller'
-    this.JSONrpc = new JSONrpc({endpoint, namespace})
+    this.JSONrpc = new JSONrpc({
+      endpoint, namespace, accessKey, secretKey
+    })
   }
   makeCall(method, options) {
-    return this.JSONrpc.call(method, {params:[options]})
+    return this.JSONrpc.call(method, {
+      params: [options]
+    })
   }
   GetVersion() {
     return this.makeCall("GetVersion")

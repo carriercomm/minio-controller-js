@@ -9,7 +9,10 @@
   "author": "Minio Inc",
   "license": "Apache-2.0",
   "dependencies": {
-    "superagent-es6-promise": "^1.0.0"
+    "crypto": "0.0.3",
+    "moment": "^2.10.6",
+    "superagent-es6-promise": "^1.0.0",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "gulp": "^3.9.0",

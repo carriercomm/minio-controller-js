@@ -15,7 +15,7 @@
  */
 
 var Ctrl = require('minio-controller-js');
-var Controller = new Ctrl("http://<YOUR-CONTROLLER-ENDPOINT>/rpc");
+var Controller = new Ctrl("http://<YOUR-CONTROLLER-ENDPOINT>/rpc", "YOUR-ACCESSKEYID", "YOUR-SECRETACCESSKEY");
 
 // Generate S3 key/secret
 Controller.FetchAuth("myuser")
