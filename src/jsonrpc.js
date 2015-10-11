@@ -32,6 +32,7 @@ export default class JSONrpc extends SuperAgent {
         var parsedUrl = url.parse(this.endpoint)
         this.host = parsedUrl.hostname
         this.path = parsedUrl.path
+        this.port = parsedUrl.port
 
         switch (parsedUrl.protocol) {
             case 'http:': {
@@ -79,6 +80,7 @@ export default class JSONrpc extends SuperAgent {
             host: this.host,
             port: this.port,
             path: this.path,
+            scheme: this.scheme,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
